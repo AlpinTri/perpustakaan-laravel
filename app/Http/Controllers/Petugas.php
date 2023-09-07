@@ -11,7 +11,7 @@ class Petugas extends Controller
      */
     public function index()
     {
-        return view('form.formpetugas');
+        return view('petugas');
     }
 
     /**

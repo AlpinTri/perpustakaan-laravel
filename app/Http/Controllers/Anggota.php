@@ -11,7 +11,7 @@ class Anggota extends Controller
      */
     public function index()
     {
-        return view('form.formanggota');
+        return view('anggota');
     }
 
     /**
