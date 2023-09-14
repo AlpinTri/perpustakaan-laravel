@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Anggota extends Controller
 {
@@ -11,7 +12,8 @@ class Anggota extends Controller
      */
     public function index()
     {
-        return view('anggota');
+        $anggota = DB::table('anggota')->get();
+        return view('anggota.index', compact('anggota'));
     }
 
     /**
@@ -19,7 +21,7 @@ class Anggota extends Controller
      */
     public function create()
     {
-        //
+        return view('anggota.create');
     }
 
     /**
@@ -27,7 +29,27 @@ class Anggota extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'id_anggota' => 'required',
+          'kode_anggota' => 'required',
+          'nama' => 'required',
+          'jenis_kelamin' => 'required',
+          'jurusan' => 'required',
+          'telepon' => 'required',
+          'alamat' => 'required',
+        ]);
+
+        $query = DB::table('anggota')->insert([
+          'id' => $request['id_anggota'],
+          'kode_anggota' => $request['kode_anggota'],
+          'nama_anggota' => $request['nama'],
+          'jk_anggota' => $request['jenis_kelamin'],
+          'jurusan_anggota' => $request['jurusan'],
+          'no_telp_anggota' => $request['telepon'],
+          'alamat_anggota' => $request['alamat'],
+        ]);
+
+        return redirect('/anggota');
     }
 
     /**

@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/anggota', [Anggota::class, 'index']);
+Route::resource('/anggota', Anggota::class);
 
-Route::get('/petugas', [Petugas::class, 'index']);
+Route::resource('/petugas', Petugas::class);
 
-Route::get('/buku', [Buku::class, 'index']);
+Route::resource('/buku', Buku::class);

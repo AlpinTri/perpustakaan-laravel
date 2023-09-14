@@ -24,12 +24,23 @@
           <hr>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Master
+              Master Data
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/anggota">Data Anggota</a></li>
               <li><a class="dropdown-item" href="/buku">Data Buku</a></li>
               <li><a class="dropdown-item" href="/petugas">Data Petugas</a></li>
+            </ul>
+          </li>
+          <hr>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Form
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/anggota/create">Form Anggota</a></li>
+              <li><a class="dropdown-item" href="/buku/create">Form Buku</a></li>
+              <li><a class="dropdown-item" href="/petugas/create">Form Petugas</a></li>
             </ul>
           </li>
           <hr>

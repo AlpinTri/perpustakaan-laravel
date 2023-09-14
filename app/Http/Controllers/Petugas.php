@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Petugas extends Controller
 {
@@ -11,7 +12,8 @@ class Petugas extends Controller
      */
     public function index()
     {
-        return view('petugas');
+        $petugas = DB::table('petugas')->get();
+        return view('petugas.index', compact('petugas'));
     }
 
     /**
@@ -19,7 +21,7 @@ class Petugas extends Controller
      */
     public function create()
     {
-        //
+        return view('petugas.create');
     }
 
     /**
@@ -27,7 +29,23 @@ class Petugas extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'id_petugas' => 'required',
+          'nama' => 'required',
+          'jabatan' => 'required',
+          'telepon' => 'required',
+          'alamat' => 'required',
+        ]);
+
+        $query = DB::table('petugas')->insert([
+          'id' => $request['id_petugas'],
+          'nama_petugas' => $request['nama'],
+          'jabatan_petugas' => $request['jabatan'],
+          'no_telp_petugas' => $request['telepon'],
+          'alamat_petugas' => $request['alamat'],
+        ]);
+
+        return redirect('/petugas');
     }
 
     /**
