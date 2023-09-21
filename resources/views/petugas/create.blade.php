@@ -14,10 +14,6 @@
     <form action="{{ route('petugas.store') }}" method="POST" class="row gx-3 gy-2">
       @csrf
       <div class="col-6">
-        <label for="id_petugas" class="form-label m-0">Id Petugas</label>
-        <input type="text" name="id_petugas" id="" class="form-control">
-      </div>
-      <div class="col-6">
         <label for="nama" class="form-label m-0">Nama</label>
         <input type="text" name="nama" id="" class="form-control">
       </div>

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  @include('subviews.navbar')
+  @include('layout.subviews.navbar')
 
   <div class="container-fluid">
     <div class="row my-3">

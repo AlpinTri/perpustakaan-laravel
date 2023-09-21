@@ -29,9 +29,7 @@ class Anggota extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-          'id_anggota' => 'required',
-          'kode_anggota' => 'required',
+        $request->validate([          'kode_anggota' => 'required',
           'nama' => 'required',
           'jenis_kelamin' => 'required',
           'jurusan' => 'required',
@@ -40,7 +38,6 @@ class Anggota extends Controller
         ]);
 
         $query = DB::table('anggota')->insert([
-          'id' => $request['id_anggota'],
           'kode_anggota' => $request['kode_anggota'],
           'nama_anggota' => $request['nama'],
           'jk_anggota' => $request['jenis_kelamin'],
@@ -57,7 +54,8 @@ class Anggota extends Controller
      */
     public function show(string $id)
     {
-        //
+        $anggota = DB::table('anggota')->where('id', $id)->get();
+        return view('anggota.show', compact('anggota'));
     }
 
     /**
@@ -65,7 +63,8 @@ class Anggota extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $anggota = DB::table('anggota')->where('id', $id)->get();
+        return view('anggota.edit', compact('anggota'));
     }
 
     /**
@@ -73,7 +72,25 @@ class Anggota extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+          'kode_anggota' => 'required',
+          'nama' => 'required',
+          'jenis_kelamin' => 'required',
+          'jurusan' => 'required',
+          'telepon' => 'required',
+          'alamat' => 'required',
+        ]);
+
+        $query = DB::table('anggota')->where('id', $id)->update([
+          'kode_anggota' => $request['kode_anggota'],
+          'nama_anggota' => $request['nama'],
+          'jk_anggota' => $request['jenis_kelamin'],
+          'jurusan_anggota' => $request['jurusan'],
+          'no_telp_anggota' => $request['telepon'],
+          'alamat_anggota' => $request['alamat'],
+        ]);
+
+        return redirect()->route('anggota.index');
     }
 
     /**
@@ -81,6 +98,7 @@ class Anggota extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $query = DB::table('anggota')->where('id', $id)->delete();
+        return redirect()->route('anggota.index');
     }
 }

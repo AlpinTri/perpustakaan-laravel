@@ -1,10 +1,11 @@
 @extends('layout.master')
 
-@section('page', 'Form Data Anggota')
+@section('page', 'Tambah Anggota')
 
 @section('breadcrumb-item')
   <li class="breadcrumb-item" aria-current=""><a href="/">Home</a></li>
-  <li class="breadcrumb-item active" aria-current="page">Form Data Anggota</li>
+  <li class="breadcrumb-item" aria-current=""><a href="{{ route('anggota.index') }}">Anggota</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Add Data</li>
 @endsection
 
 @section('main-content')
@@ -13,11 +14,11 @@
     <hr>
     <form action="{{ route('anggota.index') }}" class="row gx-3 gy-2" method="POST">
       @csrf
-      <div class="col-6">
+      {{-- <div class="col-6">
         <label for="id_anggota" class="form-label m-0">Id Anggota</label>
         <input type="text" name="id_anggota" id="" class="form-control">
-      </div>
-      <div class="col-6">
+      </div> --}}
+      <div class="col-12">
         <label for="kode_anggota" class="form-label m-0">Kode Anggota</label>
         <input type="text" name="kode_anggota" id="" class="form-control">
       </div>
@@ -45,7 +46,7 @@
         <textarea name="alamat" id="" cols="30" rows="5" class="form-control"></textarea>
       </div>
       <div class="col-12 d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Tambah Data</button>
+        <button type="submit" class="btn btn-primary">Tambah data</button>
       </div>
     </form>
   </div>

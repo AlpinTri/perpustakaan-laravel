@@ -30,7 +30,6 @@ class Petugas extends Controller
     public function store(Request $request)
     {
         $request->validate([
-          'id_petugas' => 'required',
           'nama' => 'required',
           'jabatan' => 'required',
           'telepon' => 'required',
@@ -38,7 +37,6 @@ class Petugas extends Controller
         ]);
 
         $query = DB::table('petugas')->insert([
-          'id' => $request['id_petugas'],
           'nama_petugas' => $request['nama'],
           'jabatan_petugas' => $request['jabatan'],
           'no_telp_petugas' => $request['telepon'],
@@ -53,7 +51,8 @@ class Petugas extends Controller
      */
     public function show(string $id)
     {
-        //
+        $petugas = DB::table('petugas')->where('id', $id)->get();
+        return view('petugas.show', compact('petugas'));
     }
 
     /**
@@ -61,7 +60,8 @@ class Petugas extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $petugas = DB::table('petugas')->where('id', $id)->get();
+        return view('petugas.edit', compact('petugas'));
     }
 
     /**
@@ -69,7 +69,21 @@ class Petugas extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+          'nama' => 'required',
+          'jabatan' => 'required',
+          'telepon' => 'required',
+          'alamat' => 'required',
+        ]);
+
+        $query = DB::table('petugas')->where('id', $id)->update([
+          'nama_petugas' => $request['nama'],
+          'jabatan_petugas' => $request['jabatan'],
+          'no_telp_petugas' => $request['telepon'],
+          'alamat_petugas' => $request['alamat'],
+        ]);
+
+        return redirect('/petugas');
     }
 
     /**
@@ -77,6 +91,7 @@ class Petugas extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $query = DB::table('petugas')->where('id', $id)->delete();
+        return redirect('/petugas');
     }
 }
